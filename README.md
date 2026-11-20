@@ -99,20 +99,6 @@ Energy-Aware-DWA/
 └── .gitignore
 ```
 
-## Known limitations
-
-- **Table III does not isolate the energy term.** The classical and energy-aware scripts also differ in how clearance is measured (end point vs. the whole predicted path), in their collision check and in how scores are normalised. Running the energy-aware script with δ = 0 gives a fair baseline: the energy term alone saves 1.1% on map 1 (999.90 → 989.11 J) and 7.5% on map 2 (354.64 → 328.04 J). Table IV is a fair comparison, since only the weights change.
-- **The energy cost is energy per metre (J/m)**, rather than the energy E(v, ω) written in eq. 16. The min-max normalisation of eq. 17 is applied to the energy term; the heading, clearance and velocity terms are divided by their maximum.
-- **The braking constraint (eq. 5) is not implemented.** Unsafe candidates are rejected with a fixed 0.2 m clearance instead.
-- **The energy model is steady-state.** It ignores acceleration, slopes and battery dynamics, and applies the full robot mass to each wheel's friction torque (as in eq. 11).
-- **The classical baseline's collision check has a bug**: it moves the robot state forward across candidates instead of testing each one from the current position. It is kept so that Table III reproduces.
-
-## Notes on reproduction
-
-- Table II of the paper lists K_T = 0.02; the code uses 0.024, which rounds to it. The wheel radius and track width are not listed in the paper.
-- The "elapsed time" columns in the paper are wall-clock times that include the animation, so they depend on the computer and are not repeated here.
-- The scripts regenerate all data files, so none are included.
-
 ## Publication
 
 If you use this code, please cite:
