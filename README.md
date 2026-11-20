@@ -60,27 +60,7 @@ cd Energy-Aware-DWA/src
 
 Run all scripts from inside `src/`.
 
-### 3. Reproduce Table III
 
-```matlab
-classical_dwa(1);  energy_aware_dwa(1);  plot_comparison(1)   % map 1 (Fig. 3)
-classical_dwa(2);  energy_aware_dwa(2);  plot_comparison(2)   % map 2 (Fig. 4)
-```
-
-### 4. Reproduce Table IV
-
-```matlab
-sensitivity_analysis          % runs all six weight settings on map 3
-plot_sensitivity              % Fig. 5: trajectories and velocity profiles
-```
-
-To run a single setting, use for example `sensitivity_analysis('alpha09')`. The settings are `'delta0'`, `'equal'`, `'alpha09'`, `'beta09'`, `'gamma09'` and `'delta09'`.
-
-### 5. Turn off the energy term (optional)
-
-```matlab
-energy_aware_dwa(1, 0)        % energy-aware planner with delta = 0
-```
 
 ## Repository structure
 
