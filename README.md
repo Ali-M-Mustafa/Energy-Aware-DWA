@@ -35,7 +35,7 @@ The DWA is a widely used local planner for mobile robots. At every step it tries
 
 Classical vs. energy-aware DWA with α = β = γ = δ = 0.5 (Table III of the paper):
 
-- Total energy drops by 3.6% on map 1 and 8.6% on map 2, compared with the classical DWA (see Known limitations).
+- Total energy drops by 3.6% on map 1 and 8.6% on map 2, compared with the classical DWA.
 - Average power goes up, but the robot finishes sooner, so total energy goes down.
 
 Weight sensitivity on map 3, one weight raised to 0.9 (Table IV of the paper):
