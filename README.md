@@ -31,57 +31,25 @@ The DWA is a widely used local planner for mobile robots. At every step it tries
 4. The energy-aware planner also estimates each candidate's energy: wheel speeds → friction torque → coil current → electrical power. The energy is expressed per metre travelled, and lower energy gives a higher score.
 5. The best candidate is applied for one step, and the loop repeats until the robot is within 0.5 m of the goal.
 
-## Robot parameters
-
-| Parameter | Value |
-|---|---|
-| Wheel radius r | 0.033 m |
-| Track width B | 0.16 m |
-| Motor torque constant K_T | 0.024 N·m/A |
-| Gear ratio g (left, right) | 15 |
-| Transmission efficiency η | 0.78 |
-| Coil resistance r_coil | 0.74 Ω |
-| Ground friction μ | 0.69 |
-| Robot mass m | 3.0 kg |
-
 ## Results
 
 Classical vs. energy-aware DWA with α = β = γ = δ = 0.5 (Table III of the paper):
-
-| Map | Method | Path length (m) | Simulated time (s) | Steps | Total energy (J) | Avg. power (W) |
-|---|---|---|---|---|---|---|
-| 1 | Classical DWA | 14.51 | 32.00 | 320 | 1025.55 | 32.05 |
-| 1 | Energy-aware DWA | 14.32 | 28.90 | 289 | 989.11 | 34.22 |
-| 2 | Classical DWA | 4.64 | 13.90 | 139 | 358.86 | 25.82 |
-| 2 | Energy-aware DWA | 4.73 | 9.70 | 97 | 328.04 | 33.82 |
 
 - Total energy drops by 3.6% on map 1 and 8.6% on map 2, compared with the classical DWA (see Known limitations).
 - Average power goes up, but the robot finishes sooner, so total energy goes down.
 
 Weight sensitivity on map 3, one weight raised to 0.9 (Table IV of the paper):
 
-| Weights | v variation | ω variation | Path length (m) | Total energy (J) |
-|---|---|---|---|---|
-| δ = 0, α = β = γ = 0.5 (no energy term) | 18.60 | 34.17 | 8.73 | 767.41 |
-| α = β = γ = δ = 0.5 | 2.40 | 11.17 | 9.06 | 643.59 |
-| α = 0.9, β = γ = δ = 0.5 | 1.16 | 9.84 | 8.01 | 568.05 |
-| β = 0.9, α = γ = δ = 0.5 | 1.30 | 10.38 | 9.15 | 647.53 |
-| γ = 0.9, α = β = δ = 0.5 | 3.12 | 13.28 | 10.34 | 738.05 |
-| δ = 0.9, α = β = γ = 0.5 | 2.12 | 12.53 | 10.69 | 757.50 |
-
 - Every case with the energy term moves much more smoothly than the case without it.
 - α = 0.9 gives the shortest path, the lowest energy and the smoothest motion.
 - Raising δ to 0.9 does not lower the energy further than δ = 0.5.
 
-The code reproduces every value in both tables.
 
 ## Getting started
 
 ### 1. Requirements
 
 - MATLAB (no toolboxes needed)
-
-The results were checked numerically with GNU Octave 8.4.
 
 ### 2. Install
 
@@ -98,8 +66,6 @@ Run all scripts from inside `src/`.
 classical_dwa(1);  energy_aware_dwa(1);  plot_comparison(1)   % map 1 (Fig. 3)
 classical_dwa(2);  energy_aware_dwa(2);  plot_comparison(2)   % map 2 (Fig. 4)
 ```
-
-Each planner animates the robot, prints the navigation metrics and saves its path and energy per step to CSV files. `plot_comparison` reads them and draws the path and energy figures.
 
 ### 4. Reproduce Table IV
 
@@ -169,6 +135,6 @@ A. M. Mustafa and B. Brahmi, "Energy-Aware Mobile Robot Path Planning Using Dyna
 The project code is released under the [MIT License](LICENSE).
 
 Credits:
-- The planners are adapted from `DynamicWindowApproachSample.m` in Atsushi Sakai's [MATLABRobotics](https://github.com/AtsushiSakai/MATLABRobotics), Copyright (c) 2014 Atsushi Sakai, Modified BSD License, as edited by Omer Abubakr ([MSc thesis, American University of Sharjah, 2018](http://hdl.handle.net/11073/16397)).
+- The planners are adapted from `DynamicWindowApproachSample.m` in Atsushi Sakai's [MATLABRobotics](https://github.com/AtsushiSakai/MATLABRobotics), Copyright (c) 2014 Atsushi Sakai.
 - The energy model follows M. Yao et al., "Improved dynamic windows approach based on energy consumption management and fuzzy logic control for local path planning of mobile robots," *Computers & Industrial Engineering*, vol. 187, p. 109767, 2024.
 - The Dynamic Window Approach is from D. Fox, W. Burgard and S. Thrun, "The Dynamic Window Approach to Collision Avoidance," *IEEE Robotics & Automation Magazine*, vol. 4, no. 1, pp. 23–33, 1997.
